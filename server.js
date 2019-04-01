@@ -2,8 +2,6 @@
 
 var express = require("express");
 var exphbs = require("express-handlebars");
-var axios = require("axios");
-var cheerio = require("cheerio");
 var mongoose = require("mongoose");
 
 var PORT = process.env.PORT || 3000;
@@ -26,7 +24,7 @@ app.engine("handlebars", exphbs({
 app.set("view engine", "handlebars");
 
 //Connect to the Mongo DB
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/espn";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/sports";
 
 mongoose.Promise = Promise
 mongoose.connect(MONGODB_URI)
