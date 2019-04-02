@@ -6,10 +6,6 @@ var mongoose = require("mongoose");
 
 var PORT = process.env.PORT || 3000;
 
-//Require models
-
-var db = require("./models")
-
 var app = express();
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
@@ -28,12 +24,15 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/sports";
 
 mongoose.Promise = Promise
 mongoose.connect(MONGODB_URI)
+.then(function(result){
+    console.log(`Connected to database '${result.connections[0].name}'`);
+})
 .catch(function(err){console.log(err);
 });
 
 //Routes
-require("./routes/apiRoutes.js")(app);
-require("./routes/htmlRoutes.js")(app)
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app)
 
 //Start the server
 app.listen(PORT, function() {

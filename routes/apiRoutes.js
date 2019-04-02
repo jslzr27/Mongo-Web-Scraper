@@ -1,4 +1,4 @@
-var db = require("../models/index.js");
+var db = require("../models");
 // Our scraping tools
 // Axios is a promised-based http library, similar to jQuery's Ajax method
 // It works on the client and on the server
@@ -13,7 +13,7 @@ module.exports = function(app) {
             var $ = cheerio.load(response.data);
 
             // Now, we grab every h2 within an article tag, and do the following:
-            $("article headline").each(function(i, element) {
+            $("article div.headline").each(function(i, element) {
                 //sae an empty result object
                 var result = {};
 

@@ -1,0 +1,18 @@
+<div class="container">
+    {{#each data}}
+        {{#if space}}
+            <div class="row">
+                <div class="col l12">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">{{this.title}}</span>
+                            <p>{{this.summary}}</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="{{this.link}}" target="_blank">Article</a> 
+                            <a href="/article/{{this.id}}">Comment</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
