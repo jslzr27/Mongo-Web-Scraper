@@ -12,16 +12,17 @@ module.exports = function(app) {
             // Then, we load that into cheerio and save it to $ for a shorthand selector
             var $ = cheerio.load(response.data);
 
+            var result = [];
             // Now, we grab every h2 within an article tag, and do the following:
             $("article div.headline").each(function(i, element) {
                 //sae an empty result object
-                var result = {};
+                
 
                 // Add the text and href of every link, and save them as properties of the result object
-                result.title = $(this)
+                var title = $(this)
                     .children("a")
                     .text();
-                result.link = $(this)
+                var link = $(this)
                     .children("a")
                     .attr("href");
 
@@ -33,9 +34,15 @@ module.exports = function(app) {
                     .catch(function(err){
                         console.log(err);
                     });
+
+                result.push({
+                    title: title,
+                    link: link
+                })
             });
+        res.json(result);
         //Send a message to the client
-        res.send("Scrape complete");
+        // res.send("Scrape complete");
         });
 });
 }
